@@ -1,0 +1,33 @@
+{
+  "name": "uspdev/laravel-tools",
+  "description": "Coleção de ferramentas para incrementar o Laravel",
+  "type": "library",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Masaki Kawabata Neto",
+      "email": "kawabata@usp.br"
+    }
+  ],
+  "require": {
+    "php": "^7.3|^8.0",
+    "rap2hpoutre/laravel-log-viewer": "^2.2",
+    "ybr-nx/laravel-mariadb": "^1.0",
+    "spatie/laravel-db-snapshots": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Uspdev\\LaravelTools\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Uspdev\\LaravelTools\\AppServiceProvider"
+      ]
+    }
+  }
+}

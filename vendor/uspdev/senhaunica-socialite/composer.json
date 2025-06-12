@@ -1,0 +1,37 @@
+{
+    "name": "uspdev/senhaunica-socialite",
+    "description": "Senhaunica OAuth1 Provider for Laravel Socialite",
+    "minimum-stability": "dev",
+    "homepage": "https://github.com/uspdev/senhaunica-socialite",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+
+    "authors": [{
+        "name": "Thiago Gomes Veríssimo",
+        "email": "thiago.verissimo@usp.br",
+        "homepage": "https://github.com/thiagogomesverissimo"
+    }],
+    "require": {
+        "php": "^7 | ^8",
+        "laravel/socialite": "^5",
+        "socialiteproviders/manager": "^3 | ^4",
+        "spatie/laravel-permission": "^4 | ^5 | ^6",
+        "doctrine/dbal": "^3 | ^4",
+        "kyslik/column-sortable" : "^6 | ^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Uspdev\\SenhaunicaSocialite\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Uspdev\\SenhaunicaSocialite\\SenhaunicaServiceProvider"
+            ]
+        }
+    }
+}
