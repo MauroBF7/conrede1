@@ -6,6 +6,11 @@ $admin = [
         'text' => 'Cadastrar',
     ],
     [
+        'text' => 'IPs',
+        'url' =>  '/conrede/nip/create',
+        'can' => 'manager',
+    ],
+    [
         'text' => 'Cadastrar Divisões',
         'url' =>  '/conrede/divisas/create',
         'can' => 'admin',
@@ -24,7 +29,7 @@ $admin = [
     ],
     [
         'text' => 'Divisões',
-        'url' =>  'divisas',
+        'url' =>  'conrede/divisas',
         'can' => 'admin',
     ],
 ];
@@ -42,17 +47,13 @@ $submenu2 = [
 ];
 
 $menu = [
+
     [
         # este item de menu será substituido no momento da renderização
         'key' => 'menu_dinamico',
     ],
     [
-        'text' => 'Menu gerente',
-        'url' => 'gerente',
-        'can' => 'gerente',
-    ],
-    [
-        'text' => 'Menu',
+        'text' => 'Menu admin',
         'submenu' => $admin,
         'can' => 'admin',
     ],
@@ -66,7 +67,13 @@ $right_menu = [
     [
         'key' => 'laravel-tools',
     ],
-    
+    [
+        'text' => '<i class="fas fa-cog"></i>',
+        'title' => 'Configurações',
+        'target' => '_blank',
+        'url' => config('app.url') . '/item1',
+        'align' => 'right',
+    ],
 ];
 
 

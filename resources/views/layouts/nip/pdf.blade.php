@@ -2,6 +2,8 @@
 <html>
 
     <head>
+
+
         <style>
             .page-break{
                 page-break-after: always;
@@ -15,6 +17,7 @@
                 margin-botton:35px;
                 font-size:medium;
             }
+
             .tabela{
                 border: 1px solid black;
                 text-align:center;
@@ -25,8 +28,9 @@
             .td, td{
                 border-bottom: 1px solid #ddd;
             }
+
             .table th{
-                border: 1px solid black;
+                border: 2px solid black;
                 text-align:left;
             }
             .tabela tbody tr:nth-child(even){
@@ -42,43 +46,31 @@
         </style>
     </head>
     <body>
+
         <div class="titulo">Lista de IPs da PRIP</div>
 
         <div class="container" style="width=100%">
         <table class="tabela">
             <thead>
                 <tr>
-                    <th>IP</th>
-                    <th>Patch Panel</th>
-                    <th>Porta Patch</th>
-                    <th>Porta SW</th>
-                    <th>Ponto WA</th>
-                    <th>Patrimônio</th>
-                    <th>Responsável</th>
-                    <th>Seção</th>
+                    <th><u>IP</u></th>
+                    <th><u>PONTO</u></th>
+                    <th><u>PATRIMÔNIO</u></th>
+                    <th><u>RESPONSÁVEL</u></th>
+                    <th><u>SEÇÃO</u></th>
+
                 </tr>
-                <tr></tr>
             </thead>
+
             <tbody>
                 {{ header('Content-type text/html; charset=ISO-8859-1'); }}
                 @foreach ($nips as $nip)
                     <tr>
-                        <td>{{ $telefone->ramaln }}</td>
-                        <td>{{ $telefone->responsa }}</td>
-                        <td>@forelse($divisas as $divisa)
-                            {{ $telefone->divisas_id == $divisa->id ? $divisa->sigla : ''}}
-                            @empty
-                                Sem divisão
-                            @endforelse
-                        </td>
-                        <td>{{ $telefone->secao }}</td>
-                        <td>
-                            @forelse($enderecos as $endereco)
-                                {{ $telefone->enderecos_id == $endereco->id ? $endereco->local : ''}}
-                            @empty
-                                Sem divisão
-                            @endforelse
-                        </td>
+                        <td>{{ $nip->ip }}</td>
+                        <td>{{ $nip->ponto }}</td>
+                        <td>{{ $nip->patrimonio }}</td>
+                        <td>{{ $nip->responsa }}</td>
+                        <td>{{ $nip->secao }}</td>
                     </tr>
                 @endforeach
             </tbody>

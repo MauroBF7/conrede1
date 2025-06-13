@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-body">
-            <table class="table table-striped datatable-simples dt-buttons dt-fixed-header">
+            <table class="table table-striped  btn-spinner datatable-simples dt-paging-50 dt-buttons dt-fixed-header">
                 <thead>
                     <tr>
                         @can('manager') <th>ID</th> @endcan
@@ -39,7 +39,7 @@
                             @endcan
 
                             <td>{{ $nip->ip }}</td>
-                            <td>{{ $nip->patchpanel }}</td>
+                            <td>{{ $nip->pathpanel }}</td>
                             <td>{{ $nip->porta }}</td>
                             <td>{{ $nip->ponto }}</td>
                             <td>{{ $nip->responsa }}</td>
@@ -56,3 +56,4 @@
         </div>
     </div>
 @endsection
+

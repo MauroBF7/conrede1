@@ -15,6 +15,9 @@ use App\Mail\MyTestEmail;
 use PDF;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class NIPController extends Controller
 {
@@ -80,8 +83,8 @@ class NIPController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('manager');
-        $nips= NIP::orderBy('ip','ASC')->get();
+        $this->authorize('user');
+        $nips= NIP::orderBy('id','ASC')->get();
         $divisas= Divisa::all();
         return view('layouts.nip.index',['nips'=>$nips, 'divisas'=>$divisas, 'request'=>$request->all()]);
     }
@@ -119,7 +122,6 @@ class NIPController extends Controller
     public function edit(NIP $nip, Divisa $divisas)
     {
 
-        $this->authorize('manager');
         $divisas = Divisa::all();
         return view('layouts.nip.edit', compact('nip', 'divisas'));
     }
@@ -145,23 +147,23 @@ class NIPController extends Controller
         return redirect()->route('nip.index')->with('success', 'Registro atualizado com sucesso!');
     }
 
+    /*** Função para exportação da lista de IPs como PDF */
+    public function exportacao(){
+        $this->authorize('manager');
+        //$dompdf->setPaper('A4','landscape');
+        $nips= NIP::orderBy('id','ASC')->get();
+        $divisas= Divisa::all();
+        setlocale(LC_ALL,'pt_BR.utf-8','pt_BR','Portuguese_Brazil');
+        $pdf = PDF::loadView('layouts.nip.pdf',['nips'=>$nips, 'divisas'=>$divisas]);
+        $pdf->render();
+        return $pdf->stream('ListaIPs.pdf'); //no navegador
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(NIP $nIP)
     {
         //
-    }
-
-    /*** Função para exportação da lista de IPs como PDF */
-    public function exportacao(){
-        $this->authorize('manager');
-        $nips= NIP::orderBy('ip','ASC')->get();
-        $divisas= Divisa::all();
-        //$enderecos= Endereco::all();
-        setlocale(LC_ALL,'pt_BR.utf-8','pt_BR','Portuguese_Brazil');
-        $pdf = PDF::loadView('layouts.ips_lista.pdf',['nips'=>$nips, 'divisas'=>$divisas]);
-        $pdf->render();
-        return $pdf->stream('Lista_IPS.pdf'); //no navegador
     }
 }

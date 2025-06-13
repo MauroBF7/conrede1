@@ -45,7 +45,7 @@ return [
     'permission' => true,
 
     // permite login somente de usuários já cadastrados na base local ou autorizados nos admins, gerentes ou users
-    'onlyLocalUsers' => false,
+    'onlyLocalUsers' => true,
 
     // se true, revoga as permissões do usuario se não estiver no env.
     // quer dizer que as permissões serão gerenciadas todas a partir do env da aplicação.
